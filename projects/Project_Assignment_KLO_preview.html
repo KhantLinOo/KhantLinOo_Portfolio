@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Adidas US Sales — Dashboard Preview</title>
+  <style>
+    :root{ --maxw:1024px; --paper:#EFF2F1; --ink:#12181B; --ink-soft:#4B565A; }
+    html,body{height:100%;margin:0;background:var(--paper);color:var(--ink);font-family:IBM Plex Sans,Arial, sans-serif}
+    .wrap{max-width:var(--maxw);margin:36px auto;padding:20px}
+    .back{color:var(--ink-soft);text-decoration:none;display:inline-block;margin-bottom:14px}
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+    .thumb{width:100%;border-radius:12px;border:1px solid #D7DCD8}
+    .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(18,24,27,.06)}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:#17233A;color:#fff;text-decoration:none;margin-right:8px}
+    .muted{color:var(--ink-soft)}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
+    .modal .inner{background:#fff;padding:20px;border-radius:10px;max-width:720px}
+    .close{float:right;background:#eee;border-radius:6px;padding:6px 8px;text-decoration:none;color:#333}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="../index.html">← Back to portfolio</a>
+    <div class="grid">
+      <div>
+        <img class="thumb" src="Project_Assignment_KLO_preview.svg" alt="Dashboard preview">
+        <div style="height:18px"></div>
+        <div class="card">
+          <h2>Adidas US Sales — Retail Sales Dashboard</h2>
+          <p class="muted">Interactive Power BI report for regional and SKU-level sales performance. Below are the project files — publish the PBIX to Power BI Service for full interactivity.</p>
+          <p style="margin-top:12px">
+            <a class="btn" href="Project%20Assignment%20KLO.pbix" download>Download PBIX</a>
+            <a class="btn" href="Adidas%20US%20Sales%20Datasets.xlsx" download>Download Dataset</a>
+            <a class="btn" id="howbtn" href="#">How to view interactively</a>
+          </p>
+        </div>
+      </div>
+      <aside>
+        <div class="card">
+          <h3>Key insights</h3>
+          <ul>
+            <li>Top SKUs drive the majority of unit sales — prioritize inventory sizing.</li>
+            <li>Regional variance suggests promotional opportunities in underperforming areas.</li>
+            <li>Weekly seasonality highlights optimal promo windows.</li>
+          </ul>
+          <h3 style="margin-top:12px">Skills demonstrated</h3>
+          <ul>
+            <li>Power BI report design &amp; DAX</li>
+            <li>Data modelling in Excel</li>
+            <li>SQL-powered ETL</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="inner">
+      <a href="#" class="close" id="close">✕</a>
+      <h3>Viewing Power BI (.pbix) interactively</h3>
+      <p class="muted">Power BI Desktop files (.pbix/.pbit) cannot be rendered directly in a browser. To view interactively:</p>
+      <ol>
+        <li>Sign in to <a href="https://app.powerbi.com" target="_blank" rel="noopener">Power BI Service</a>.</li>
+        <li>Go to <strong>My workspace</strong> (or a workspace you own) and choose <em>Get data &gt; Files</em> to upload the .pbix.</li>
+        <li>After upload, open the report in Power BI Service — it will render interactively in your browser.</li>
+        <li>Optionally, share the published report link or embed it in a secure web page.</li>
+      </ol>
+      <p class="muted">If you want, I can help publish a copy to Power BI Service and provide an embed link (requires a Power BI account and appropriate permissions).</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('howbtn').addEventListener('click', (e) => { e.preventDefault(); document.getElementById('modal').style.display = 'flex'; });
+    document.getElementById('close').addEventListener('click', (e) => { e.preventDefault(); document.getElementById('modal').style.display = 'none'; });
+  </script>
+</body>
+</html>
