@@ -4,11 +4,7 @@ This is a static portfolio for Khant Lin Oo.
 
 ## GitHub Pages
 
-To publish this repository with GitHub Pages:
-
-1. Push the repo to GitHub.
-2. In repository settings, enable Pages from the `main` branch (or `gh-pages` branch) and use the root folder.
-3. Wait a few minutes and visit `https://<username>.github.io/<repo-name>/`.
+`https://khantlinoo.github.io/KhantLinOo_Portfolio/`
 
 ## Notes
 
