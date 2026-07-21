@@ -502,6 +502,29 @@ textarea:focus-visible{
 }
 
 /* ============ PROJECTS ============ */
+.project-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  margin-bottom:1.5rem;
+}
+.filter-btn{
+  font-family:var(--ff-mono);
+  font-size:.82rem;
+  font-weight:600;
+  padding:.6rem 1rem;
+  border:1px solid var(--line-dark);
+  border-radius:999px;
+  color:var(--ink-soft);
+  background:transparent;
+  transition:all .3s var(--ease);
+}
+.filter-btn:hover,
+.filter-btn.is-active{
+  color:var(--ink);
+  border-color:var(--amber);
+  background:rgba(217,142,63,.14);
+}
 .project-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
@@ -605,6 +628,7 @@ textarea:focus-visible{
 }
 .project-links a:hover{ border-color:var(--ink); }
 .project-links svg{ width:14px;height:14px; }
+.project-card.is-hidden{ display:none; }
 
 .project-card.placeholder{
   border-style:dashed;

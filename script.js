@@ -55,6 +55,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) lucide.createIcons();
   }));
 
+  /* project filters */
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+
+      filterButtons.forEach((btn) => {
+        const isActive = btn === button;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+
+      projectCards.forEach((card) => {
+        const matches = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('is-hidden', !matches);
+      });
+    });
+  });
+
   /* scroll reveal */
   const revealEls = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {

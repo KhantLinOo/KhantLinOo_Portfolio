@@ -145,10 +145,17 @@
         <p>Three projects, three angles on the same job: get a straight answer out of a dataset that isn't offering one.</p>
       </div>
 
+      <div class="project-filters reveal" role="tablist" aria-label="Project categories">
+        <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" type="button" data-filter="python" aria-pressed="false">Python</button>
+        <button class="filter-btn" type="button" data-filter="sql" aria-pressed="false">SQL</button>
+        <button class="filter-btn" type="button" data-filter="powerbi" aria-pressed="false">Power BI</button>
+      </div>
+
       <div class="project-grid">
 
         <!-- Project 1 -->
-        <article class="project-card reveal">
+        <article class="project-card reveal" data-category="python">
           <div class="project-top">
             <span class="cell-tag">1</span>
             <span class="project-icon"><i data-lucide="bar-chart-3"></i></span>
@@ -170,7 +177,7 @@
         </article>
 
         <!-- Project 2 -->
-        <article class="project-card reveal">
+        <article class="project-card reveal" data-category="sql">
           <div class="project-top">
             <span class="cell-tag">2</span>
             <span class="project-icon"><i data-lucide="database"></i></span>
@@ -191,7 +198,7 @@
         </article>
 
         <!-- Project 3 : Adidas Power BI project -->
-        <article class="project-card reveal">
+        <article class="project-card reveal" data-category="powerbi">
           <div class="project-top">
             <span class="cell-tag">3</span>
             <span class="project-icon"><i data-lucide="layout-dashboard"></i></span>
