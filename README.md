@@ -48,7 +48,7 @@ The portfolio showcases:
 ## Contact
 
 For questions or feedback, please contact the author directly.
-You can contact me via email at [khantlynn2012@gmail.com](mailto:khantlynn2012@gmail.com) or connect with me on LinkedIn at [Khant Lin Oo](https://www.linkedin.com/in/khant-lin-oo-4b81b1aa/)
+You can contact me via email at [khantlynn2012@gmail.com](mailto:khantlynn2012@gmail.com), connect with me on LinkedIn at [Khant Lin Oo](https://www.linkedin.com/in/khant-lin-oo-4b81b1aa/) or visit my portfolio wedpage [Khant Lin Oo @ GitHub](https://khantlinoo.github.io/KhantLinOo_Portfolio/)
 
 ## License
 
