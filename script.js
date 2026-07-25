@@ -133,6 +133,118 @@ document.addEventListener('DOMContentLoaded', () => {
     kpiObserver.observe(heroVisual);
   }
 
+  /* ============ scroll progress + scrollspy + back-to-top ============ */
+  const scrollProgress = document.getElementById('scroll-progress');
+  const backToTop = document.getElementById('back-to-top');
+  const ringFg = document.getElementById('progress-ring-fg');
+  const RING_CIRC = 2 * Math.PI * 19;
+  if (ringFg) {
+    ringFg.style.strokeDasharray = `${RING_CIRC}`;
+    ringFg.style.strokeDashoffset = `${RING_CIRC}`;
+  }
+
+  const spySections = document.querySelectorAll('main section[id]');
+  const spyLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const id = entry.target.getAttribute('id');
+      spyLinks.forEach((link) => {
+        link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+      });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  spySections.forEach((section) => spyObserver.observe(section));
+
+  let scrollTicking = false;
+  const onScroll = () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+      if (scrollProgress) scrollProgress.style.width = `${pct * 100}%`;
+      if (ringFg) ringFg.style.strokeDashoffset = `${RING_CIRC * (1 - pct)}`;
+      if (backToTop) backToTop.classList.toggle('is-visible', scrollTop > 500);
+      scrollTicking = false;
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ============ rotating headline word ============ */
+  const rotateWord = document.getElementById('rotate-word');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (rotateWord && !reduceMotion) {
+    const words = ['decisions', 'dashboards', 'insights', 'strategy'];
+    let wordIndex = 0;
+    setInterval(() => {
+      rotateWord.classList.add('is-swapping');
+      setTimeout(() => {
+        wordIndex = (wordIndex + 1) % words.length;
+        rotateWord.textContent = words[wordIndex];
+        rotateWord.classList.remove('is-swapping');
+      }, 350);
+    }, 2800);
+  }
+
+  /* ============ project card tilt + cursor spotlight ============ */
+  const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (supportsHover && !reduceMotion) {
+    document.querySelectorAll('.project-card:not(.placeholder)').forEach((card) => {
+      let tiltRaf = null;
+      card.addEventListener('mouseenter', () => card.classList.add('is-tilting'));
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+        const rotateY = (px - 0.5) * 10;
+        const rotateX = (0.5 - py) * 8;
+        if (tiltRaf) cancelAnimationFrame(tiltRaf);
+        tiltRaf = requestAnimationFrame(() => {
+          card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+          card.style.setProperty('--mx', `${px * 100}%`);
+          card.style.setProperty('--my', `${py * 100}%`);
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        card.classList.remove('is-tilting');
+        card.style.transform = '';
+      });
+    });
+  }
+
+  /* ============ copy email to clipboard ============ */
+  const toast = document.getElementById('toast');
+  let toastTimer = null;
+  const showToast = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+  };
+  document.querySelectorAll('.copy-btn[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(value);
+        showToast('Email copied to clipboard');
+        btn.classList.add('is-copied');
+        setTimeout(() => btn.classList.remove('is-copied'), 1500);
+      } catch (err) {
+        showToast(`Copy this: ${value}`);
+      }
+    });
+  });
+
   /* contact form -> mailto */
   const form = document.getElementById('contact-form');
   const note = document.getElementById('form-note');
