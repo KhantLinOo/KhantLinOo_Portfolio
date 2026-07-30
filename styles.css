@@ -557,9 +557,24 @@ textarea:focus-visible{
   background:rgba(217,142,63,.14);
 }
 .project-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-  gap:1.75rem;
+  display:flex;
+  gap:1.5rem;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding-bottom:1rem;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+.project-grid::-webkit-scrollbar{
+  height:8px;
+}
+.project-grid::-webkit-scrollbar-thumb{
+  background:rgba(23,35,58,.25);
+  border-radius:999px;
+}
+.project-grid::-webkit-scrollbar-track{
+  background:transparent;
 }
 .project-card{
   position:relative;
@@ -570,6 +585,10 @@ textarea:focus-visible{
   padding:1.9rem;
   display:flex;
   flex-direction:column;
+  flex:0 0 min(360px, 84vw);
+  max-width:min(360px, 84vw);
+  min-height:470px;
+  scroll-snap-align:start;
   transition:transform .5s var(--ease), box-shadow .4s var(--ease), border-color .4s;
   transform-style:preserve-3d;
 }
