@@ -532,6 +532,49 @@ textarea:focus-visible{
   .about-grid{ grid-template-columns:1fr; }
 }
 
+/* ============ CERTIFICATIONS ============ */
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:1.25rem;
+}
+.cert-card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  padding:1.5rem;
+  box-shadow:0 10px 30px rgba(15, 23, 42, .04);
+}
+.cert-header{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  align-items:flex-start;
+  margin-bottom:.85rem;
+}
+.cert-card h3{
+  font-size:1.2rem;
+  line-height:1.3;
+  margin:0;
+}
+.cert-card span{
+  font-family:var(--ff-mono);
+  font-size:.76rem;
+  color:var(--amber-dark);
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.cert-period{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.95rem;
+}
+
+@media (max-width:960px){
+  .cert-grid{ grid-template-columns:1fr; }
+}
+
 /* ============ PROJECTS ============ */
 .project-filters{
   display:flex;
